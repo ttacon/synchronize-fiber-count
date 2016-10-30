@@ -1,0 +1,28 @@
+{
+  "name": "synchronize-fiber-count",
+  "version": "0.0.0",
+  "description": "Emits the number of fibers created per a given time interval",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ttacon/synchronize-fiber-count.git"
+  },
+  "keywords": [
+    "fibers",
+    "synchronize",
+    "metrics"
+  ],
+  "author": "Trey Tacon <ttacon@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ttacon/synchronize-fiber-count/issues"
+  },
+  "homepage": "https://github.com/ttacon/synchronize-fiber-count#readme",
+  "devDependencies": {
+    "jasmine": "^2.5.2",
+    "synchronize": "^2.0.0"
+  }
+}
