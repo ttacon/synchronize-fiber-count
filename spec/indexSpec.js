@@ -27,9 +27,17 @@ describe('FiberCounter', () => {
         });
     });
 
+    function createFiber(sync) {
+        sync.fiber(() => {
+            sync.await(((done) => {
+                done();
+            })(sync.defer()));
+        });
+    }
+
     describe('emit', () => {
+        let sync = require('synchronize');
         it('correctly emits the fiber count', (done) => {
-            let sync = require('synchronize');
             let counter = new FiberCounter({
                 sync,
                 interval: 0.5,
@@ -40,14 +48,29 @@ describe('FiberCounter', () => {
                 counter.stop();
                 done();
             });
-
-            sync.fiber(() => {
-                sync.await(((done) => {
-                    done();
-                })(sync.defer()));
-            });
-
             counter.start();
+
+            createFiber(sync);
+        });
+
+        it('correctly emits the fiber count', (done) => {
+            createFiber(sync); // This is to force sync to cleanup?
+            let counter = new FiberCounter({
+                sync,
+                interval: 1,
+                unit: 's'
+            });
+            
+            counter.on('count', (val) => {
+                expect(val).toEqual(3);
+                counter.stop();
+                done();
+            });
+            counter.start();
+
+            createFiber(sync);
+            createFiber(sync);
+            createFiber(sync);
         });
     });
 });

@@ -12,7 +12,6 @@ class FiberCounter extends EventEmitter {
         this.interval = options.interval || 30000;
         this.unit = options.unit || 'ms';
         this.syncRef = options.sync.Fiber;
-        this.currNumFibers = this.syncRef.fibersCreated;
     }
 
     getInterval() {
@@ -25,6 +24,7 @@ class FiberCounter extends EventEmitter {
     }
 
     start() {
+        this.currNumFibers = this.syncRef.fibersCreated;
         this.intervalRef = setInterval(() => {
             let currFiberCount = this.syncRef.fibersCreated;
             let fiberDiff = currFiberCount - this.currNumFibers;
