@@ -1,6 +1,6 @@
 {
   "name": "synchronize-fiber-count",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Emits the number of fibers created per a given time interval",
   "main": "index.js",
   "scripts": {
